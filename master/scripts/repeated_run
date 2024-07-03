@@ -1,0 +1,49 @@
+while getopts ':t:q:v:n:' flag; do
+
+    case "${flag}" in
+        t) testname="${OPTARG}" ;;
+        v) verbosity="${OPTARG}" ;;
+		n) number="${OPTARG}" ;;
+		q) quitcount="${OPTARG}" ;;
+    esac
+done
+
+
+cd $work_area
+
+if [ ! -d log_dir ]; then
+  mkdir log_dir
+fi
+cd log_dir
+RUN=1
+if [ ! -d "$testname"_multiple_runs ]; then
+  	mkdir "$testname"_multiple_runs
+fi
+
+
+cd "$testname"_multiple_runs
+
+while [ $RUN -le $number ]
+do
+   seed=$(shuf -i 1-2147483647 -n1)
+	echo "Runing number $RUN seed = $seed"
+	testfile="${testname}_${seed}.log"
+
+	if [ ! -d "$testname"_"$seed" ]; then
+	  	mkdir "$RUN"_"$testname"_"$seed"
+	fi
+	cd "$RUN"_"$testname"_"$seed"
+	xrun -clean -coverage ALL -64bit -timescale 1ns/1ns -sysv -access +rw -uvmhome CDNS-1.2 -seed ${seed} -covoverwrite -coverage all  -f $scripts/filelist.f +UVM_TESTNAME=$testname +UVM_VERBOSITY=${verbosity} +UVM_MAX_QUIT_COUNT=${quitcount} > $testfile
+	
+
+	cd ../
+	((RUN++))
+done
+
+grep "ERROR" */*.log > errors.log
+
+
+
+	
+
+

@@ -1,0 +1,10 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+/space/users/jelenar/master/rtl/design.sv
+/space/users/jelenar/master/verification/uvc/fifo_if.sv
+/space/users/jelenar/master/verification/uvc/fifo_pkg.sv
+/space/users/jelenar/master/verification/ral/ral_pkg.sv
+/space/users/jelenar/master/verification/env/fifo_env_pkg.sv
+/space/users/jelenar/master/verification/tb/top.sv

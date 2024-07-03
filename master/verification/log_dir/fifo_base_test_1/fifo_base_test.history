@@ -1,0 +1,1 @@
+s1(02Jul2024:11:16:01):  xrun -clean -64bit -timescale 1ns/1ns -sysv -access +rwc -uvmhome CDNS-1.2 -seed 1 -l fifo_base_test -f /space/users/jelenar/master/scripts/filelist.f +UVM_TESTNAME=fifo_base_test +UVM_VERBOSITY=UVM_HIGH +UVM_MAX_QUIT_COUNT=1 +define+IXCOM_1X -run -exit 

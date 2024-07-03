@@ -1,0 +1,49 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-INPUT
+"@source /tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/additions/sv/files/tcl/uvm_sim.tcl"
++UVM_VERBOSITY=UVM_HIGH
++UVM_MAX_QUIT_COUNT=1
++incdir+/space/users/jelenar/master/verification/../rtl
++incdir+/space/users/jelenar/master/verification/uvc
++incdir+/space/users/jelenar/master/verification/sequences
++incdir+/space/users/jelenar/master/verification/ral
++incdir+/space/users/jelenar/master/verification/env
++incdir+/space/users/jelenar/master/verification/tests
++incdir+/space/users/jelenar/master/verification/tb
++define+IXCOM_1X
+-uvmhome
+/tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2
+-sv_lib
+/tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/additions/sv/lib/64bit/libuvmpli.so
++UVM_TESTNAME=fifo_base_test
+-RUN
+-EXIT
+-MESSAGES
+-svseed
+1
+-sndynseed
+1
+-RUN
+-SV_LIB
+/tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/additions/sv/lib/64bit/libuvmdpi.so
++EMGRLOG
+fifo_base_test
+-XLSTIME
+1719918961
+-XLKEEP
+-XLMODE
+./xcelium.d/run.lnx8664.22.03.d
+-RUNMODE
+-CDSLIB
+./xcelium.d/run.lnx8664.22.03.d/cds.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.22.03.d/hdl.var
+-XLNAME
+xrun
+-XLVERSION
+"TOOL:	xrun(64)	22.03-s002"
+-XLNAME
+./xcelium.d/run.lnx8664.22.03.d/cad-compute1_14313

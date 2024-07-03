@@ -1,0 +1,334 @@
+xrun(64): 22.03-s002: (c) Copyright 1995-2022 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	22.03-s002: Started on Jul 02, 2024 at 11:16:30 UTC
+xrun
+	-clean
+	-64bit
+	-timescale 1ns/1ns
+	-sysv
+	-access +rwc
+	-uvmhome CDNS-1.2
+	-seed 1
+	-l fifo_epty_uf_test
+	-f /space/users/jelenar/master/scripts/filelist.f
+		+incdir+/space/users/jelenar/master/verification/../rtl
+		/space/users/jelenar/master/verification/../rtl/design.sv
+		+incdir+/space/users/jelenar/master/verification/uvc
+		/space/users/jelenar/master/verification/uvc/fifo_if.sv
+		+incdir+/space/users/jelenar/master/verification/sequences
+		/space/users/jelenar/master/verification/uvc/fifo_pkg.sv
+		+incdir+/space/users/jelenar/master/verification/ral
+		/space/users/jelenar/master/verification/ral/ral_pkg.sv
+		+incdir+/space/users/jelenar/master/verification/env
+		/space/users/jelenar/master/verification/env/fifo_env_pkg.sv
+		+incdir+/space/users/jelenar/master/verification/tests
+		+incdir+/space/users/jelenar/master/verification/tb
+		/space/users/jelenar/master/verification/tb/top.sv
+	+UVM_TESTNAME=fifo_epty_uf_test
+	+UVM_VERBOSITY=UVM_HIGH
+	+UVM_MAX_QUIT_COUNT=1
+	+define+IXCOM_1X
+	-run
+	-exit
+
+   User defined plus("+") options:
+	+UVM_VERBOSITY=UVM_HIGH
+	+UVM_MAX_QUIT_COUNT=1
+
+xrun: *N,CLEAN: Removing existing directory ./xcelium.d.
+Compiling UVM packages (uvm_pkg.sv cdns_uvm_pkg.sv) using uvmhome location /tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2
+xmvlog: *W,NOTIND: unable to access -INCDIR /space/users/jelenar/master/verification/sequences (No such file or directory).
+xmvlog: *W,NOTIND: unable to access -INCDIR /space/users/jelenar/master/verification/sequences (No such file or directory).
+file: /space/users/jelenar/master/verification/../rtl/design.sv
+	module worklib.fifo_mem:v
+		errors: 0, warnings: 0
+	module worklib.memory_array:v
+		errors: 0, warnings: 0
+	module worklib.read_pointer:v
+		errors: 0, warnings: 0
+	module worklib.status_signal:v
+		errors: 0, warnings: 0
+	module worklib.write_pointer:v
+		errors: 0, warnings: 0
+	module worklib.master_module:sv
+		errors: 0, warnings: 0
+file: /space/users/jelenar/master/verification/uvc/fifo_if.sv
+	interface worklib.fifo_if:sv
+		errors: 0, warnings: 0
+file: /space/users/jelenar/master/verification/uvc/fifo_pkg.sv
+	package worklib.fifo_pkg:sv
+		errors: 0, warnings: 0
+file: /space/users/jelenar/master/verification/ral/ral_pkg.sv
+	package worklib.ral_pkg:sv
+		errors: 0, warnings: 0
+file: /space/users/jelenar/master/verification/env/fifo_env_pkg.sv
+			regmodel.CTL_STAT.fifo_underflow.predict(1);
+			                                       |
+xmvlog: *W,FUNTSK (/space/users/jelenar/master/verification/env/fifo_scoreboard.sv,60|42): function called as a task without void'().
+			regmodel.CTL_STAT.fifo_overflow.predict(0);
+			                                      |
+xmvlog: *W,FUNTSK (/space/users/jelenar/master/verification/env/fifo_scoreboard.sv,65|41): function called as a task without void'().
+			regmodel.CTL_STAT.fifo_underflow.predict(0);
+			                                       |
+xmvlog: *W,FUNTSK (/space/users/jelenar/master/verification/env/fifo_scoreboard.sv,88|42): function called as a task without void'().
+			regmodel.CTL_STAT.fifo_overflow.predict(1);
+			                                      |
+xmvlog: *W,FUNTSK (/space/users/jelenar/master/verification/env/fifo_scoreboard.sv,92|41): function called as a task without void'().
+			regmodel.CTL_STAT.fifo_empty.predict(0);
+			                                   |
+xmvlog: *W,FUNTSK (/space/users/jelenar/master/verification/env/fifo_scoreboard.sv,96|38): function called as a task without void'().
+			regmodel.CTL_STAT.fifo_full.predict(1);
+			                                  |
+xmvlog: *W,FUNTSK (/space/users/jelenar/master/verification/env/fifo_scoreboard.sv,101|37): function called as a task without void'().
+		regmodel.CTL_STAT.predict(00000001);
+		                        |
+xmvlog: *W,FUNTSK (/space/users/jelenar/master/verification/env/fifo_scoreboard.sv,111|26): function called as a task without void'().
+		regmodel.CTL_STAT.predict(00000001);
+		                        |
+xmvlog: *W,FUNTSK (/space/users/jelenar/master/verification/env/fifo_scoreboard.sv,136|26): function called as a task without void'().
+			regmodel.CTL_STAT.fifo_full.predict(0);
+			                                  |
+xmvlog: *W,FUNTSK (/space/users/jelenar/master/verification/env/fifo_scoreboard.sv,144|37): function called as a task without void'().
+			regmodel.CTL_STAT.fifo_empty.predict(1);
+			                                   |
+xmvlog: *W,FUNTSK (/space/users/jelenar/master/verification/env/fifo_scoreboard.sv,150|38): function called as a task without void'().
+	package worklib.fifo_env_pkg:sv
+		errors: 0, warnings: 10
+file: /space/users/jelenar/master/verification/tb/top.sv
+     function  fifo_epty_uf_test::new(string name = "fifo_epty_uf_test", uvm_component parent);
+                                                |
+xmvlog: *W,PMBDVI (/space/users/jelenar/master/verification/tests/fifo_epty_uf_test.sv,12|48): Out of block declaration default argument value was not in prototype, and is ignored.
+	package worklib.fifo_test_pkg:sv
+		errors: 0, warnings: 1
+	module worklib.top:sv
+		errors: 0, warnings: 0
+xmvlog: *W,SPDUSD: Include directory /space/users/jelenar/master/verification/tb given but not used.
+	Total errors/warnings found outside modules and primitives:
+		errors: 0, warnings: 2
+		Caching library 'worklib' ....... Done
+	Elaborating the design hierarchy:
+	Top level design units:
+		uvm_pkg
+		cdns_uvmapi
+		cdns_assert2uvm_pkg
+		cdns_uvm_pkg
+		fifo_pkg
+		fifo_env_pkg
+		fifo_test_pkg
+		top
+xmelab: *W,DSEMEL: This SystemVerilog design will be simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.status_signal:v <0x50265070>
+			streams:   8, words:  3038
+		worklib.memory_array:v <0x00e3688c>
+			streams:   3, words:  1099
+		worklib.read_pointer:v <0x0bc17604>
+			streams:   2, words:   638
+		worklib.write_pointer:v <0x135874bf>
+			streams:   2, words:   638
+		worklib.master_module:sv <0x31db037b>
+			streams:  21, words:  9234
+		worklib.top:sv <0x0be2c80d>
+			streams: 983, words: 1305938
+		worklib.cdns_uvm_pkg:sv <0x4953010b>
+			streams: 237, words: 381370
+		worklib.cdns_uvmapi:svp <0x3904f587>
+			streams:  27, words: 29972
+		worklib.cdns_assert2uvm_pkg:sv <0x7e19bdeb>
+			streams:   3, words:  1818
+		worklib.uvm_pkg:sv <0x730bf6c2>
+			streams: 5301, words: 8248859
+		worklib.fifo_if:sv <0x744fe736>
+			streams:   3, words:  1329
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                       Instances  Unique
+		Modules:                       7       7
+		Interfaces:                    1       1
+		Verilog packages:              7       8
+		Registers:                 17553   11996
+		Scalar wires:                 30       -
+		Vectored wires:               13       -
+		Named events:                  4      12
+		Always blocks:                11      11
+		Initial blocks:              368     180
+		Parallel blocks:              29      30
+		Cont. assignments:            14      17
+		Pseudo assignments:           18      18
+		Assertions:                    4       4
+		SV Class declarations:       244     362
+		SV Class specializations:    476     476
+		Simulation timescale:        1ns
+	Writing initial simulation snapshot: worklib.top:sv
+Loading snapshot worklib.top:sv .................... Done
+SVSEED set from command line: 1
+xmsim: *W,DSEM2009: This SystemVerilog design is simulated as per IEEE 1800-2009 SystemVerilog simulation semantics. Use -disable_sem2009 option for turning off SV 2009 simulation semantics.
+xcelium> source /tools/cdnc/xcelium/current/tools/xcelium/files/xmsimrc
+xcelium> source /tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/additions/sv/files/tcl/uvm_sim.tcl
+xcelium> run
+UVM_INFO /tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh(412) @ 0: reporter [UVM/RELNOTES] 
+----------------------------------------------------------------
+CDNS-UVM-1.2 (22.03-s002)
+(C) 2007-2014 Mentor Graphics Corporation
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2013-2014 NVIDIA Corporation
+----------------------------------------------------------------
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+  See http://www.eda.org/svdb/view.php?id=3313 for more details.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+  See http://www.eda.org/svdb/view.php?id=3770 for more details.
+
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+
+UVM_INFO @ 0: reporter [RNTST] Running test fifo_epty_uf_test...
+UVM_INFO @ 0: reporter [MAXQUITSET] '+UVM_MAX_QUIT_COUNT=1' provided on the command line is being applied.
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_master_driver.sv(29) @ 0: uvm_test_top.m_env.m_agent.driver [build_phase] BUILD fifo_MASTER_DRIVER
+SDI/Verilog Transaction Recording Facility Version 22.03-s002
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(131) @ 0: uvm_test_top.m_env.scbd [SCOREBOARD] run task, for reset
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(140) @ 0: uvm_test_top.m_env.scbd [SCOREBOARD] run task
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_master_driver.sv(79) @ 10: uvm_test_top.m_env.m_agent.driver [Driver] do_init task executed
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_master_driver.sv(79) @ 30: uvm_test_top.m_env.m_agent.driver [Driver] do_init task executed
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_master_driver.sv(79) @ 50: uvm_test_top.m_env.m_agent.driver [Driver] do_init task executed
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_master_driver.sv(79) @ 70: uvm_test_top.m_env.m_agent.driver [Driver] do_init task executed
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_master_driver.sv(79) @ 90: uvm_test_top.m_env.m_agent.driver [Driver] do_init task executed
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(131) @ 100: uvm_test_top.m_env.scbd [SCOREBOARD] run task, for reset
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_master_driver.sv(79) @ 110: uvm_test_top.m_env.m_agent.driver [Driver] do_init task executed
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_master_driver.sv(84) @ 210: uvm_test_top.m_env.m_agent.driver [Driver] do_drive task is being executed
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(69) @ 220: uvm_test_top.m_env.m_monitor [monitor] read is begin sent
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(71) @ 220: uvm_test_top.m_env.m_monitor [fifo_monitor] Monitor collected trans --------------------------------
+Name      Type       Size  Value
+--------------------------------
+req       fifo_item  -     @2191
+  enable  integral   1     'h0  
+  write   integral   1     'h0  
+  read    integral   1     'h1  
+  wdata   integral   8     'h0  
+  addr    integral   2     'h1  
+  delay   integral   32    'h0  
+--------------------------------
+
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(69) @ 220: uvm_test_top.m_env.m_agent.m_monitor [monitor] read is begin sent
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(71) @ 220: uvm_test_top.m_env.m_agent.m_monitor [fifo_monitor] Monitor collected trans --------------------------------
+Name      Type       Size  Value
+--------------------------------
+req       fifo_item  -     @3965
+  enable  integral   1     'h0  
+  write   integral   1     'h0  
+  read    integral   1     'h1  
+  wdata   integral   8     'h0  
+  addr    integral   2     'h1  
+  delay   integral   32    'h0  
+--------------------------------
+
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(54) @ 220: uvm_test_top.m_env.scbd [SCOREBOARD] write
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(73) @ 220: uvm_test_top.m_env.scbd [ctl_stat] ctl = 01
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(74) @ 220: uvm_test_top.m_env.scbd [ref_ctrl_start] ref_ctrl_start = 01
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_master_driver.sv(84) @ 350: uvm_test_top.m_env.m_agent.driver [Driver] do_drive task is being executed
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(62) @ 360: uvm_test_top.m_env.m_monitor [moiotr] write is beging sent
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(71) @ 360: uvm_test_top.m_env.m_monitor [fifo_monitor] Monitor collected trans --------------------------------
+Name      Type       Size  Value
+--------------------------------
+req       fifo_item  -     @2191
+  enable  integral   1     'h0  
+  write   integral   1     'h1  
+  read    integral   1     'h0  
+  wdata   integral   8     'ha  
+  addr    integral   2     'h0  
+  delay   integral   32    'h0  
+--------------------------------
+
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(62) @ 360: uvm_test_top.m_env.m_agent.m_monitor [moiotr] write is beging sent
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(71) @ 360: uvm_test_top.m_env.m_agent.m_monitor [fifo_monitor] Monitor collected trans --------------------------------
+Name      Type       Size  Value
+--------------------------------
+req       fifo_item  -     @3965
+  enable  integral   1     'h0  
+  write   integral   1     'h1  
+  read    integral   1     'h0  
+  wdata   integral   8     'ha  
+  addr    integral   2     'h0  
+  delay   integral   32    'h0  
+--------------------------------
+
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(54) @ 360: uvm_test_top.m_env.scbd [SCOREBOARD] write
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(97) @ 360: uvm_test_top.m_env.scbd [] Data writen = a
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_master_driver.sv(84) @ 530: uvm_test_top.m_env.m_agent.driver [Driver] do_drive task is being executed
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(69) @ 540: uvm_test_top.m_env.m_monitor [monitor] read is begin sent
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(71) @ 540: uvm_test_top.m_env.m_monitor [fifo_monitor] Monitor collected trans --------------------------------
+Name      Type       Size  Value
+--------------------------------
+req       fifo_item  -     @2191
+  enable  integral   1     'h0  
+  write   integral   1     'h0  
+  read    integral   1     'h1  
+  wdata   integral   8     'ha  
+  addr    integral   2     'h1  
+  delay   integral   32    'h0  
+--------------------------------
+
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(69) @ 540: uvm_test_top.m_env.m_agent.m_monitor [monitor] read is begin sent
+UVM_INFO /space/users/jelenar/master/verification/uvc/fifo_monitor.sv(71) @ 540: uvm_test_top.m_env.m_agent.m_monitor [fifo_monitor] Monitor collected trans --------------------------------
+Name      Type       Size  Value
+--------------------------------
+req       fifo_item  -     @3965
+  enable  integral   1     'h0  
+  write   integral   1     'h0  
+  read    integral   1     'h1  
+  wdata   integral   8     'ha  
+  addr    integral   2     'h1  
+  delay   integral   32    'h0  
+--------------------------------
+
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(54) @ 540: uvm_test_top.m_env.scbd [SCOREBOARD] write
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(73) @ 540: uvm_test_top.m_env.scbd [ctl_stat] ctl = 00
+UVM_INFO /space/users/jelenar/master/verification/env/fifo_scoreboard.sv(74) @ 540: uvm_test_top.m_env.scbd [ref_ctrl_start] ref_ctrl_start = 00
+UVM_INFO /tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_objection.svh(1271) @ 650: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO /tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_catcher.svh(705) @ 650: reporter [UVM/REPORT/CATCHER] 
+--- UVM Report catcher Summary ---
+
+
+Number of demoted UVM_FATAL reports  :    0
+Number of demoted UVM_ERROR reports  :    0
+Number of demoted UVM_WARNING reports:    0
+Number of caught UVM_FATAL reports   :    0
+Number of caught UVM_ERROR reports   :    0
+Number of caught UVM_WARNING reports :    0
+
+UVM_INFO /tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_report_server.svh(847) @ 650: reporter [UVM/REPORT/SERVER] 
+--- UVM Report Summary ---
+
+Quit count :     0 of     1
+** Report counts by severity
+UVM_INFO :   38
+UVM_WARNING :    0
+UVM_ERROR :    0
+UVM_FATAL :    0
+** Report counts by id
+[]     1
+[Driver]     9
+[MAXQUITSET]     1
+[RNTST]     1
+[SCOREBOARD]     6
+[TEST_DONE]     1
+[UVM/RELNOTES]     1
+[UVM/REPORT/CATCHER]     1
+[build_phase]     1
+[ctl_stat]     2
+[fifo_monitor]     6
+[moiotr]     2
+[monitor]     4
+[ref_ctrl_start]     2
+
+Simulation complete via $finish(1) at time 650 NS + 59
+/tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/sv/src/base/uvm_root.svh:543     $finish;
+xcelium> exit
+TOOL:	xrun(64)	22.03-s002: Exiting on Jul 02, 2024 at 11:16:36 UTC  (total: 00:00:06)

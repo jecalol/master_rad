@@ -1,0 +1,14 @@
+while getopts ':t:' flag; do
+    case "${flag}" in
+        t) testname="${OPTARG}" ;;
+        *) echo "Unexpected option ${flag}" 
+    esac
+done
+
+
+cd $work_area
+if [ -d cov_work ]; then
+rm -rf cov_work
+fi
+imc -execcmd "merge log_dir/"$testname"_multiple_runs/*/cov_work/scope/test*/ -out all"
+imc -load cov_work/scope/all/ &

@@ -1,0 +1,26 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-INCDIR
+/space/users/jelenar/master/verification/../rtl
+-INCDIR
+/space/users/jelenar/master/verification/uvc
+-INCDIR
+/space/users/jelenar/master/verification/sequences
+-INCDIR
+/space/users/jelenar/master/verification/ral
+-INCDIR
+/space/users/jelenar/master/verification/env
+-INCDIR
+/space/users/jelenar/master/verification/tests
+-INCDIR
+/space/users/jelenar/master/verification/tb
+-DEFINE
+IXCOM_1X
+-I_INCDIR
+/tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/sv/src
+-DEFINE
+USE_PARAMETERIZED_WRAPPER
+-I_INCDIR
+/tools/cdnc/xcelium/current/tools/methodology/UVM/CDNS-1.2/additions/sv
