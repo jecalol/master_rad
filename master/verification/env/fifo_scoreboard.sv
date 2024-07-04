@@ -60,12 +60,12 @@ bit [7:0] temp;
 	  if (req.addr == 0) begin 
 		if(refw_fifo.size()== 0) begin  
 		  	ref_ctrl_start[3] =1; 
-			regmodel.CTL_STAT.fifo_underflow.predict(1);
+			regmodel.STAT_REG.fifo_underflow.predict(1);
 		
 		end 
 		else begin 
 			ref_ctrl_start[2] =0;
-			regmodel.CTL_STAT.fifo_overflow.predict(0);
+			regmodel.STAT_REG.fifo_overflow.predict(0);
 			refr_fifo.push_back(req.rdata); 
 			regmodel.MEM_REG.last_out.predict(req.rdata);
 			`uvm_info("ms_scoreboard - write", $sformatf("Data read = %0h", req.rdata), UVM_LOW)
@@ -90,21 +90,21 @@ bit [7:0] temp;
 	  if (req.addr == 0  || req.addr == 1 || req.addr == 2) begin 
 		if(ref_ctrl_start[3] ==1) begin 
 			ref_ctrl_start[3] =0;
-			regmodel.CTL_STAT.fifo_underflow.predict(0);
+			regmodel.STAT_REG.fifo_underflow.predict(0);
 		end
 	 	if(refw_fifo.size()== 16) begin 
 			ref_ctrl_start[2] =1;
-			regmodel.CTL_STAT.fifo_overflow.predict(1);
+			regmodel.STAT_REG.fifo_overflow.predict(1);
 		end else begin
 
                  if(refw_fifo.size()== 0) ref_ctrl_start[0] =0; 
-			regmodel.CTL_STAT.fifo_empty.predict(0);
+			regmodel.STAT_REG.fifo_empty.predict(0);
 		`uvm_info("", $sformatf("Data writen = %0h", req.wdata), UVM_LOW)
      			refw_fifo.push_back(req.wdata);
 			regmodel.MEM_REG.last_in.predict(req.wdata);
 			if(refw_fifo.size()== 16) begin 
 				ref_ctrl_start[1] =1;
-			regmodel.CTL_STAT.fifo_full.predict(1);
+			regmodel.STAT_REG.fifo_full.predict(1);
 			end
 
 	        end
@@ -114,7 +114,7 @@ bit [7:0] temp;
 		refw_fifo.delete();
 		refr_fifo.delete();
 		ref_ctrl_start= 00000001;
-		regmodel.CTL_STAT.predict(00000001);
+		regmodel.STAT_REG.predict(00000001);
 	 end 
 	 end
 	end
@@ -139,7 +139,7 @@ fork
 		refw_fifo.delete();
 		refr_fifo.delete();
 		ref_ctrl_start= 00000001;
-		regmodel.CTL_STAT.predict(00000001);
+		regmodel.STAT_REG.predict(00000001);
 	end 
 	end 
 	forever begin
@@ -147,13 +147,13 @@ fork
 		  wait (refr_fifo.size()>0 && refw_fifo.size()>0);
 		if(refw_fifo.size()== 16) begin 
 				ref_ctrl_start[1] =0;
-			regmodel.CTL_STAT.fifo_full.predict(0);
+			regmodel.STAT_REG.fifo_full.predict(0);
 			end
 		
 		 expcteddata=refw_fifo.pop_front(); 
 		if(refw_fifo.size()== 0) begin 
 				ref_ctrl_start[0] =1;
-			regmodel.CTL_STAT.fifo_empty.predict(1);
+			regmodel.STAT_REG.fifo_empty.predict(1);
 			end
 		    // Compare 
 		    if (expcteddata == recveddata) begin

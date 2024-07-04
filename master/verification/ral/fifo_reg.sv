@@ -109,7 +109,7 @@ class fifo_mem_reg extends uvm_reg;
                    .reset(1'h0),  
                    .has_reset(1),  
                    .is_rand(1),  
-                   .individually_accessible(1));   
+                   .individually_accessible(0));   
       last_in.configure(.parent(this),
                    .size(1), 
                    .lsb_pos(0),  
@@ -118,7 +118,7 @@ class fifo_mem_reg extends uvm_reg;
                    .reset(1'h0),  
                    .has_reset(1),  
                    .is_rand(1),  
-                   .individually_accessible(1));   
+                   .individually_accessible(0));   
      depth.configure(.parent(this), 
                    .size(1), 
                    .lsb_pos(8),  
@@ -127,7 +127,7 @@ class fifo_mem_reg extends uvm_reg;
                    .reset(1'h0),  
                    .has_reset(1),  
                    .is_rand(1),  
-                   .individually_accessible(1));   
+                   .individually_accessible(0));   
  
     endfunction
 endclass

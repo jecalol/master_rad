@@ -18,8 +18,8 @@ module master_module (clk, rst_n, enable, addr, write, read, wdata, rdata, resp)
   logic fifo_rd;
   logic fifo_reg_write;
  
-  reg[7:0] STAT_REG;//addr=1
-  reg[31:0] MEM_REG; //addr= 2
+  logic[7:0] STAT_REG;//addr=1
+  logic[31:0] MEM_REG; //addr= 2
 
   logic[7:0] fifo_data_out;
  
