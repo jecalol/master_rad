@@ -69,12 +69,12 @@ module fifo_mem (data_out,fifo_full, fifo_empty, fifo_overflow, fifo_underflow,c
  
   assign fbit_comp = wptr[4] ^ rptr[4];  
   assign pointer_equal = (wptr[3:0] - rptr[3:0]) ? 0:1;    
-  assign overflow_set = fifo_full & wr;  
-  assign underflow_set = fifo_empty & rd;  
+  assign overflow_set = fifo_full;  
+  assign underflow_set = fifo_empty & wr;
  
   always @(*) begin  
-     fifo_full =fbit_comp & pointer_equal;  
-     fifo_empty = (~fbit_comp) & pointer_equal;  
+     fifo_full = (~fbit_comp) & pointer_equal;  
+     fifo_empty = fbit_comp & pointer_equal;  
   end
  
   always @(posedge clk or negedge rst_n or posedge clear) begin  
@@ -83,11 +83,11 @@ module fifo_mem (data_out,fifo_full, fifo_empty, fifo_overflow, fifo_underflow,c
 else if(clear)
 fifo_overflow <=0;
      else if((overflow_set==1)&&(fifo_rd==0))  
-        fifo_overflow <=1;  
+        fifo_overflow <= 1;  
      else if(fifo_rd)  
-        fifo_overflow <=0;  
+        fifo_overflow <= 0;  
      else  
-        fifo_overflow <= fifo_overflow;  
+        fifo_overflow <= 1;  
   end  
  
   always @(posedge clk or negedge rst_n or posedge clear) begin  
@@ -96,11 +96,11 @@ fifo_underflow <=0;
     else if(clear)
 fifo_underflow <=0;
      else if((underflow_set==1)&&(fifo_we==0))  
-        fifo_underflow <=1;  
+        fifo_underflow <= 0;  
      else if(fifo_we)  
-        fifo_underflow <=0;  
+        fifo_underflow <= 1;  
      else  
-        fifo_underflow <= fifo_underflow;  
+        fifo_underflow <= 0;  
   end
  
  endmodule  
@@ -124,3 +124,4 @@ wptr <= 5'b00000;
         wptr <= wptr;  
   end  
  endmodule 
+

@@ -10,6 +10,7 @@ class fifo_scoreboard extends uvm_scoreboard;
       bit [7:0]  refr_fifo[$];
       bit [7:0]  refw_fifo[$];
       bit [7:0]  ref_ctrl_start= 00000001; 
+      bit [31:0]  ref_mem_reg= 0; 
      virtual fifo_if fifo_vif;
     fifo_reg_block  regmodel;  
     int polling_duration=2;
@@ -123,7 +124,7 @@ endfunction
 function void fifo_scoreboard::phase_ready_to_end(uvm_phase phase);
  if (phase.get_name() != "run") return;
  if (refr_fifo.size() != 0) begin
-
+ `uvm_info("SCOREBOARD", $sformatf("refr_fifo.size()= %0h", refr_fifo.size()), UVM_LOW)
   `uvm_fatal ("phase_ready_to_end","queue not empty")
  end
 endfunction
@@ -149,8 +150,8 @@ fork
 				ref_ctrl_start[1] =0;
 			regmodel.STAT_REG.fifo_full.predict(0);
 			end
-		
-		 expcteddata=refw_fifo.pop_front(); 
+		 `uvm_info("SCOREBOARD", $sformatf("refr_fifo.size-1()= %0h", refr_fifo.size()), UVM_LOW)
+		 expcteddata=refr_fifo.pop_front(); 
 		if(refw_fifo.size()== 0) begin 
 				ref_ctrl_start[0] =1;
 			regmodel.STAT_REG.fifo_empty.predict(1);

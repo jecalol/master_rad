@@ -15,7 +15,7 @@ class fifo_item extends uvm_sequence_item;
   	`uvm_field_int(wdata, UVM_ALL_ON)
 	`uvm_field_int(addr, UVM_ALL_ON)
 	`uvm_field_int(delay, UVM_ALL_ON)
-  	
+  	  `uvm_field_int(rdata, UVM_ALL_ON)
    `uvm_object_utils_end
  	extern function new(string name = "fifo_item"); 
 	constraint wr_rd_c {soft  write != read;  }

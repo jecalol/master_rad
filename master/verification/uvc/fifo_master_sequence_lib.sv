@@ -50,7 +50,11 @@ endfunction : new
 
 //-------------------------------------------------------------------
 task fifo_basic_sequence::body();
-	`uvm_do(req);
+	`uvm_do_with (req, {write==1'b1; addr==0;}); 
+	#100;
+	`uvm_do_with (req, {read==1'b1; addr==2'b00;}); 
+	#100;
+	//`uvm_do_with (req, {read==1'b1; addr==2'b10;}); 
 endtask : body
 //---------------------------------------------------------------------------------------------
 
@@ -81,7 +85,7 @@ task fifo_empty_read_sequence::body();
 	//`uvm_do_with (req, {read==1'b1; addr==1;}); //checks empty bit
 	p_sequencer.regmodel.STAT_REG.read(status,  rdata);
 	`uvm_do_with (req, {write==1'b1; addr==0;}); //reads from empty fifo
-		p_sequencer.regmodel.STAT_REG.read(status,  rdata);
+	p_sequencer.regmodel.STAT_REG.read(status,  rdata);
 	//`uvm_do_with (req, {read==1'b1; addr==1;}); //checks for underflow bit 
 endtask : body
 //---------------------------------------------------------------------------------------------
@@ -108,13 +112,15 @@ endfunction : new
 
 //-------------------------------------------------------------------
 task fifo_full_read_sequence::body();
+	`uvm_do_with (req, {read==1'b1; addr==1;}); //chekcs for full*/
 	for (int i=0; i<16; i++)begin
 	`uvm_do_with (req, {write==1'b1; addr==0;});
 	end
-	/*`uvm_do_with (req, {read==1'b1; addr==1;}); //chekcs for full bit 
+	//p_sequencer.regmodel.STAT_REG.read(status,  rdata);
+	`uvm_do_with (req, {read==1'b1; addr==1;}); //chekcs for full*/
 	`uvm_do_with (req, {write==1'b1; addr==0;});//writes to full
 	`uvm_do_with (req, {read==1'b1; addr==1;}); //chekcs for overflow*/
-	p_sequencer.regmodel.STAT_REG.read(status,  rdata);
+	//p_sequencer.regmodel.STAT_REG.read(status,  rdata);
 endtask : body
 
 

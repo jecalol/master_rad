@@ -75,6 +75,7 @@ task fifo_master_driver::do_init();
     fifo_vif.write = 0;
     fifo_vif.read= 0;
     fifo_vif.wdata =8'b00000000;
+    fifo_vif.rdata =8'b00000000;
     @(posedge fifo_vif.clk);
     `uvm_info("Driver", "do_init task executed", UVM_LOW)
 endtask : do_init
@@ -82,12 +83,28 @@ endtask : do_init
 //-------------------------------------------------------------------------------------------------------------
 task fifo_master_driver::do_drive();
     `uvm_info("Driver", "do_drive task is being executed", UVM_LOW)
-    fifo_vif.write <= req.write;
-    fifo_vif.addr  <= req.addr;
-    fifo_vif.wdata <=req.wdata;
-    fifo_vif.read <= req.read;
-    fifo_vif.enable <=1;
+	if(req.write==1)begin
+ 		fifo_vif.write <= req.write;
+    		fifo_vif.addr  <= req.addr;
+    		fifo_vif.wdata <=req.wdata;
+    		fifo_vif.read <= req.read;
 
+	end
+	if(req.read==1)begin
+ 		fifo_vif.write <= req.write;
+    		fifo_vif.addr  <= req.addr;
+    		fifo_vif.read <= req.read;
+   		fifo_vif.rdata <=req.rdata;
+	end
+   
+    fifo_vif.enable <=1;
+ 	/*if(req.addr==2'b10)begin 
+		for (int i=0;i<4;i++)begin 
+    			fifo_vif.read <= req.read;
+		end
+	end else if (req.addr==2'b00) begin
+		 fifo_vif.read <= req.read;
+	end*/
    @(posedge fifo_vif.clk);
    fifo_vif.enable <=0;
 

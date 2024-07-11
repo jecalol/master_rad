@@ -35,7 +35,7 @@ fifo_data_in = enable && rst_n ? {8{fifo_wr}} &  wdata : 0;
  
   //top level outputs
   always_comb begin    
-    resp = (addr == 'h2) && write && enable;//writing to MEM_REG
+  //  resp = (addr == 'h2) && write && enable;//writing to MEM_REG
 case(addr)
   0 : rdata = fifo_data_out;
   1 : rdata = STAT_REG;
@@ -49,8 +49,8 @@ endcase
  assign STAT_REG[4] = fifo_reg_write;
  assign STAT_REG[3] = fifo_underflow;
  assign STAT_REG[2] = fifo_overflow;
- assign STAT_REG[1] = fifo_full;
- assign STAT_REG[0] = fifo_empty;
+ assign STAT_REG[1] = fifo_empty;
+ assign STAT_REG[0] = fifo_full;
  //MEM_REG
  assign MEM_REG[7:0] = fifo_data_in;
  assign MEM_REG[31:24] = fifo_data_out;
@@ -74,3 +74,4 @@ endcase
 
  
 endmodule
+
