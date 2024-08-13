@@ -23,7 +23,7 @@ function void fifo_reg_block::build();
     MEM_REG.configure(this);
 
     STAT_REG.add_hdl_path_slice("STAT_REG", 0, 8);      
-
+    MEM_REG.add_hdl_path_slice("MEM_REG", 0, 32);      
 
  	default_map = create_map("default_map", 0,1, UVM_LITTLE_ENDIAN); // name, base, nBytes
 

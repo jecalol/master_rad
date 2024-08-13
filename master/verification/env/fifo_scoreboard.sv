@@ -11,6 +11,7 @@ class fifo_scoreboard extends uvm_scoreboard;
       bit [7:0]  refw_fifo[$];
       bit [7:0]  ref_ctrl_start= 00000001; 
       bit [31:0]  ref_mem_reg= 0; 
+      bit [7:0] expcteddata; 
      virtual fifo_if fifo_vif;
     fifo_reg_block  regmodel;  
     int polling_duration=2;
@@ -67,9 +68,11 @@ bit [7:0] temp;
 		else begin 
 			ref_ctrl_start[2] =0;
 			regmodel.STAT_REG.fifo_overflow.predict(0);
-			refr_fifo.push_back(req.rdata); 
+			expcteddata=refw_fifo.pop_front();
 			regmodel.MEM_REG.last_out.predict(req.rdata);
+			if(!(req.rdata===expcteddata)) begin  `uvm_error("data","mismach") end 
 			`uvm_info("ms_scoreboard - write", $sformatf("Data read = %0h", req.rdata), UVM_LOW)
+
 		end 
 	  end 
 
@@ -150,19 +153,13 @@ fork
 				ref_ctrl_start[1] =0;
 			regmodel.STAT_REG.fifo_full.predict(0);
 			end
-		 `uvm_info("SCOREBOARD", $sformatf("refr_fifo.size-1()= %0h", refr_fifo.size()), UVM_LOW)
-		 expcteddata=refr_fifo.pop_front(); 
+		 `uvm_info("SCOREBOARD", $sformatf("refr_fifo.size-1()= %0h", refr_fifo.size()), UVM_LOW) 
 		if(refw_fifo.size()== 0) begin 
 				ref_ctrl_start[0] =1;
 			regmodel.STAT_REG.fifo_empty.predict(1);
 			end
-		    // Compare 
-		    if (expcteddata == recveddata) begin
-		        `uvm_info("SCOREBOARD", "Data match", UVM_LOW)
-		    end else begin
-		        `uvm_error("SCOREBOARD", $sformatf(" EEROR expected= %0h, receved= %0h", expcteddata, recveddata))
-		    end
 
+		   
 
 
 	end

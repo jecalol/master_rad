@@ -103,7 +103,7 @@ class fifo_mem_reg extends uvm_reg;
         // Configure
     last_out.configure(.parent(this), 
                    .size(1), 
-                   .lsb_pos(24),  
+                   .lsb_pos(31),  
                    .access("RO"),   
                    .volatile(0),  
                    .reset(1'h0),  

@@ -49,11 +49,11 @@ function void fifo_env:: build_phase (uvm_phase phase);
    m_master_seqr   = fifo_master_sequencer::type_id::create ("m_master_seqr", this);
    	m_agent.cfg  = m_env_cfg.cfg; //connect agent cfg with cfg from env
 
-  		regmodel = fifo_reg_block::type_id::create("regmodel", this);
+  	regmodel = fifo_reg_block::type_id::create("regmodel", this);
         m_adapter   = fifo_reg2bus::type_id::create("m_adapter");
         m_apb2reg_predictor = uvm_reg_predictor#(fifo_item)::type_id::create("m_apb2reg_predictor", this);        
         regmodel.build();
-	    regmodel.lock_model();
+	regmodel.lock_model();
         uvm_config_db #(fifo_reg_block)::set(null, "*", "regmodel", regmodel);
         
 
@@ -69,8 +69,7 @@ function void fifo_env:: connect_phase (uvm_phase phase);
         m_apb2reg_predictor.map = regmodel.default_map;
         m_apb2reg_predictor.adapter = m_adapter;
         m_agent.m_monitor.fifo_mon_analysis_port.connect(m_apb2reg_predictor.bus_in);
-		regmodel.add_hdl_path("top.m_dut0");
-
+	regmodel.add_hdl_path("top.m_dut0");
         regmodel.default_map.set_sequencer(m_agent.sequencer, m_adapter);
         regmodel.default_map.set_base_addr(8'h1);	
 		
@@ -85,6 +84,12 @@ function void fifo_env:: end_of_elaboration_phase(uvm_phase phase);
             '{$sformatf("fifo_overflow"),1,2},
             '{$sformatf("fifo_full"),1,1},
             '{$sformatf("fifo_empty"),1,0}
+
+        });
+        regmodel.MEM_REG.add_hdl_path('{
+            '{$sformatf("last_out"),8,24},
+            '{$sformatf("last_in"),8,0},
+            '{$sformatf("depth"),1,8}
 
         });
 endfunction : end_of_elaboration_phase 

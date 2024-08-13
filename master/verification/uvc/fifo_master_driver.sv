@@ -83,19 +83,14 @@ endtask : do_init
 //-------------------------------------------------------------------------------------------------------------
 task fifo_master_driver::do_drive();
     `uvm_info("Driver", "do_drive task is being executed", UVM_LOW)
-	if(req.write==1)begin
+
  		fifo_vif.write <= req.write;
     		fifo_vif.addr  <= req.addr;
     		fifo_vif.wdata <=req.wdata;
     		fifo_vif.read <= req.read;
-
-	end
-	if(req.read==1)begin
- 		fifo_vif.write <= req.write;
-    		fifo_vif.addr  <= req.addr;
-    		fifo_vif.read <= req.read;
-   		fifo_vif.rdata <=req.rdata;
-	end
+		 `uvm_info("Driver", $sformatf("req.addr= %0h",req.addr), UVM_LOW)
+   	
+	
    
     fifo_vif.enable <=1;
  	/*if(req.addr==2'b10)begin 

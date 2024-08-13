@@ -29,13 +29,13 @@ module master_module (clk, rst_n, enable, addr, write, read, wdata, rdata, resp)
 fifo_rd = enable && rst_n ? (addr == 'h0) && read : 0;
 fifo_wr = enable && rst_n ? (addr == 'h0) && write : 0;
 fifo_data_in = enable && rst_n ? {8{fifo_wr}} &  wdata : 0;
-    fifo_reg_write = enable && rst_n ? (addr == 'h1 ) && write && (wdata[4] == 'h1) : 0;
+fifo_reg_write = enable && rst_n ? (addr == 'h1 ) && write && (wdata[4] == 'h1) : 0;
 //fifo_reg_write-only write to reg is for clr of STAT_REG
   end  
  
   //top level outputs
   always_comb begin    
-  //  resp = (addr == 'h2) && write && enable;//writing to MEM_REG
+    resp = (addr == 'h2) && write && enable;//writing to MEM_REG
 case(addr)
   0 : rdata = fifo_data_out;
   1 : rdata = STAT_REG;
@@ -52,8 +52,8 @@ endcase
  assign STAT_REG[1] = fifo_empty;
  assign STAT_REG[0] = fifo_full;
  //MEM_REG
- assign MEM_REG[7:0] = fifo_data_in;
  assign MEM_REG[31:24] = fifo_data_out;
+ assign MEM_REG[7:0] = fifo_data_in;
  assign MEM_REG[8] = fifo_wr- fifo_rd;
  assign MEM_REG[23:9] =0;
  

@@ -15,10 +15,9 @@ endclass : fifo_full_of_test
 
      function void fifo_full_of_test::build_phase(uvm_phase phase);
 	uvm_factory factory= uvm_factory::get();
-        super.build_phase(phase);
         //set_specific_configuration();
-     set_type_override_by_type(fifo_empty_sequence::get_type(), fifo_full_read_sequence::get_type());
-
+     	set_type_override_by_type(fifo_empty_sequence::get_type(), fifo_full_read_sequence::get_type());
+        super.build_phase(phase);
     endfunction : build_phase
 
 

@@ -1,5 +1,5 @@
-+incdir+${labs_home}/../rtl
-${labs_home}/../rtl/design.sv 
++incdir+${labs_home}/rtl
+${labs_home}/rtl/design.sv 
 
 +incdir+${work_area}/uvc
 

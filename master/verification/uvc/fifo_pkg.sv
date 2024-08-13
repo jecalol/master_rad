@@ -16,6 +16,7 @@ package fifo_pkg;
   `include "fifo_cfg.sv"
   `include "fifo_master_sequencer.sv"
   `include "fifo_master_sequence_lib.sv"
+  `include "fifo_backdoor_sequnece_lib.sv"
   `include "fifo_master_driver.sv"
   `include "fifo_monitor.sv"
   `include "fifo_agent.sv"
