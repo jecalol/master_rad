@@ -93,13 +93,13 @@ task fifo_master_driver::do_drive();
 	
    
     fifo_vif.enable <=1;
- 	/*if(req.addr==2'b10)begin 
+ 	if(req.addr==2'b10)begin 
 		for (int i=0;i<4;i++)begin 
     			fifo_vif.read <= req.read;
 		end
 	end else if (req.addr==2'b00) begin
 		 fifo_vif.read <= req.read;
-	end*/
+	end
    @(posedge fifo_vif.clk);
    fifo_vif.enable <=0;
 

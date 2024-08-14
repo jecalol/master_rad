@@ -58,6 +58,7 @@ bit [7:0] temp;
 	if (req.read) begin 
 	//ms_cg.r_cg.sample(req.read,req.addr,req.resp); 
 		cnt =cnt-1;
+			ref_mem_reg[8]=cnt;
 		regmodel.MEM_REG.depth.predict(cnt);
 	  if (req.addr == 0) begin 
 		if(refw_fifo.size()== 0) begin  
@@ -67,6 +68,7 @@ bit [7:0] temp;
 		end 
 		else begin 
 			ref_ctrl_start[2] =0;
+			ref_mem_reg[31:24]=req.rdata;
 			regmodel.STAT_REG.fifo_overflow.predict(0);
 			expcteddata=refw_fifo.pop_front();
 			regmodel.MEM_REG.last_out.predict(req.rdata);
@@ -86,10 +88,26 @@ bit [7:0] temp;
 		if (!(req.rdata[4] ===ref_ctrl_start[4])) begin  `uvm_error("ctl_start","error with FIFO clr")end 
 			
 	 end
+	  if (req.addr == 2) begin 
+		for(int i=0; i<4;i++)begin 
+			`uvm_info("mem_reg", $sformatf("mem = %h", req.rdata), UVM_LOW)
+			
+			if (i ==0)begin 
+				if (!(req.rdata ===ref_mem_reg[7:0])) begin  `uvm_error("mem_reg","last_in not as expecetd") end
+			end 
+			if (i ==1)begin 
+				if (!(req.rdata[0] ===ref_mem_reg[8])) begin  `uvm_error("mem_reg","depth not as expecetd") end
+			end
+			if (i ==3)begin 
+				if (!(req.rdata ===ref_mem_reg[31:24])) begin  `uvm_error("mem_reg","last_out not as expecetd") end
+			end
+			
+		 end
 	end
 	if (req.write) begin
 	//ms_cg.w_cg.sample(req.wdata,req.addr); 
 		cnt =cnt+1;
+			ref_mem_reg[8]=cnt;
 		regmodel.MEM_REG.depth.predict(cnt);
 	  if (req.addr == 0  || req.addr == 1 || req.addr == 2) begin 
 		if(ref_ctrl_start[3] ==1) begin 
@@ -104,6 +122,7 @@ bit [7:0] temp;
                  if(refw_fifo.size()== 0) ref_ctrl_start[0] =0; 
 			regmodel.STAT_REG.fifo_empty.predict(0);
 		`uvm_info("", $sformatf("Data writen = %0h", req.wdata), UVM_LOW)
+			ref_mem_reg[7:0]=req.wdata;
      			refw_fifo.push_back(req.wdata);
 			regmodel.MEM_REG.last_in.predict(req.wdata);
 			if(refw_fifo.size()== 16) begin 
@@ -112,14 +131,15 @@ bit [7:0] temp;
 			end
 
 	        end
+	end
 	  end  
-	  if (req.addr == 3) begin 
+	  if (req.addr == 1) begin 
 		if(req.wdata[4]==1) begin 
 		refw_fifo.delete();
 		refr_fifo.delete();
 		ref_ctrl_start= 00000001;
 		regmodel.STAT_REG.predict(00000001);
-	 end 
+	 	end 
 	 end
 	end
 endfunction
